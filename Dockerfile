@@ -10,11 +10,14 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     libsqlite3-dev \
-    nodejs \
-    npm \
     && docker-php-ext-install pdo_sqlite mbstring exif pcntl bcmath gd \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 22 (LTS) - Vite 5.x butuh Node 20+
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -50,4 +53,4 @@ ENV QUEUE_CONNECTION=sync
 EXPOSE 80
 
 # Start command
-CMD ["php", "artisan", "migrate", "--force", "&&", "php", "artisan", "storage:link", "&&", "php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
+CMD php artisan migrate --force && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=80
