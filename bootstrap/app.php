@@ -17,7 +17,13 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        //
+        // Trust Railway's proxy servers to properly detect HTTPS
+        $middleware->trustProxies(at: '*');
+        
+        // Force HTTPS in production
+        if (app()->environment('production')) {
+            \URL::forceScheme('https');
+        }
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

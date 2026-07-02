@@ -47,8 +47,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | This URL is used by the console to properly generate URLs when using
-    | the Artisan command line tool. You should set this to the root of
-    | the application so that it's available within Artisan commands.
+    | the Artisan command line tool. You should set this to the root of the
+    | application so that it's available within Artisan commands.
     |
     */
 
@@ -122,5 +122,17 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Force HTTPS in Production
+    |--------------------------------------------------------------------------
+    |
+    | Force all URLs to use HTTPS when in production environment.
+    | This is important for deployments behind HTTPS proxies like Railway.
+    |
+    */
+
+    'force_https' => env('FORCE_HTTPS', false),
 
 ];
