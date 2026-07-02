@@ -1,58 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎨 Portfolio Reski - Visual Creator & Content Producer
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, full-stack portfolio website built with **Laravel**, **React**, **TypeScript**, and **Inertia.js**. Features a complete admin panel for content management and a sleek public-facing portfolio with dynamic projects showcase, skills visualization, and contact form.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-13.x-FF2D20?style=flat-square&logo=laravel)
+![React](https://img.shields.io/badge/React-18.x-61DAFB?style=flat-square&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=flat-square&logo=tailwind-css)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Public Pages
 
-## Learning Laravel
+- **Homepage** — Hero section, featured projects preview, skills showcase, and contact form
+- **Projects Gallery** — Searchable & filterable projects grid with category filters and pagination
+- **Project Detail** — Individual project pages with video embed and related projects
+- **Skills & Achievements** — Progress bars for skills, achievements cards, and education timeline
+- **Contact Page** — Two-column layout with contact info, social links, and message form
+- **Responsive Design** — Fully responsive across mobile, tablet, and desktop
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🔐 Admin Panel
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Dashboard** — Overview with statistics (total projects, unread messages, skills count)
+- **Projects Management** — Full CRUD with image upload, featured toggle, and category management
+- **Messages Inbox** — View, mark as read, and delete contact form submissions
+- **Skills Management** — Full CRUD with icon upload and category classification (Skillset/Toolset)
+- **Authentication** — Secure login with Laravel Breeze
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Technical Highlights
 
-## Agentic Development
+- **Server-Side Rendering** via Inertia.js for fast page loads
+- **TypeScript** for type-safe development
+- **Image Upload** with preview and validation
+- **Real-time Search & Filter** on projects page
+- **Scroll Animations** with Intersection Observer
+- **Dark Theme** with yellow accent color scheme
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+
+- **Laravel 13.x** — PHP framework
+- **Laravel Breeze** — Authentication scaffolding
+- **Inertia.js** — Server-side rendering bridge
+- **MySQL/PostgreSQL** — Database
+
+### Frontend
+
+- **React 18.x** — UI library
+- **TypeScript 5.x** — Type safety
+- **Vite** — Build tool and dev server
+- **Tailwind CSS 3.x** — Utility-first CSS framework
+
+### Tools
+
+- **ESLint** — Code linting
+- **Prettier** — Code formatting
+- **Git** — Version control
+
+---
+
+## 📋 Requirements
+
+- **PHP** >= 8.3
+- **Composer** >= 2.5
+- **Node.js** >= 18.x
+- **NPM** >= 9.x
+- **MySQL** >= 8.0 or **PostgreSQL** >= 14
+
+---
+
+## 🚀 Installation
+
+### 1. Clone the Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/yourusername/portfolio-reski.git
+cd portfolio-reski
 ```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
