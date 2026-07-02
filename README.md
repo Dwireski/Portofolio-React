@@ -79,6 +79,6 @@ A modern, full-stack portfolio website built with **Laravel**, **React**, **Type
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/portfolio-reski.git
+git clone https://github.com/Dwireski/portfolio-react.git
 cd portfolio-reski
 ```
