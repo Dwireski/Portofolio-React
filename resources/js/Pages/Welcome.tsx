@@ -78,6 +78,35 @@ function FadeIn({
     );
 }
 
+// Komponen untuk animasi Skill Bar
+function AnimatedSkillBar({ level }: { level: number }) {
+    const [width, setWidth] = useState(0);
+    const barRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                setWidth(level);
+            }
+        });
+
+        if (barRef.current) observer.observe(barRef.current);
+        return () => observer.disconnect();
+    }, [level]);
+
+    return (
+        <div
+            ref={barRef}
+            className="w-full h-2 bg-gray-950 rounded-full overflow-hidden border border-gray-900/60 p-[1px]"
+        >
+            <div
+                className="h-full bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 rounded-full transition-all duration-[2000ms] ease-out shadow-glow"
+                style={{ width: `${width}%` }}
+            />
+        </div>
+    );
+}
+
 export default function Welcome({ auth, projects, skills }: Props) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -128,6 +157,47 @@ export default function Welcome({ auth, projects, skills }: Props) {
             window.history.pushState(null, "", `#${targetId}`);
         }
     };
+
+    // Statistics data
+    const statistics = [
+        {
+            label: "Projects",
+            value: projects.length,
+            suffix: "+",
+            icon: "🎬",
+            description: "Completed productions",
+        },
+        {
+            label: "Skills",
+            value: skills.length,
+            suffix: "+",
+            icon: "⚡",
+            description: "Core competencies",
+        },
+        {
+            label: "Achievements",
+            value: 3,
+            suffix: "",
+            icon: "🏆",
+            description: "Awards & recognitions",
+        },
+        {
+            label: "Years Active",
+            value: 6,
+            suffix: "+",
+            icon: "📅",
+            description: "Industry experience",
+        },
+    ];
+
+    // Top skills for About Me section (with hardcoded levels for now)
+    const topSkills = [
+        { name: "Video & Audio Editing", level: 90 },
+        { name: "Graphic Design", level: 85 },
+        { name: "Adobe Premiere", level: 90 },
+        { name: "Adobe After Effects", level: 85 },
+        { name: "Digital Content Creation", level: 92 },
+    ];
 
     return (
         <>
@@ -323,6 +393,36 @@ export default function Welcome({ auth, projects, skills }: Props) {
                             </div>
                         </div>
                     </FadeIn>
+                </section>
+
+                {/* Statistics Section - NEW */}
+                <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-950 to-gray-900/40 border-y border-gray-900/60">
+                    <div className="max-w-7xl mx-auto">
+                        <FadeIn>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                                {statistics.map((stat, index) => (
+                                    <div
+                                        key={stat.label}
+                                        className="bg-gray-900/60 rounded-2xl border border-gray-855 p-6 sm:p-8 text-center hover:border-yellow-400/40 transition-all duration-300 group shadow-xl hover:shadow-black/50"
+                                    >
+                                        <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-200">
+                                            {stat.icon}
+                                        </div>
+                                        <div className="text-3xl sm:text-4xl font-black text-yellow-400 mb-2 tracking-tight">
+                                            {stat.value}
+                                            {stat.suffix}
+                                        </div>
+                                        <div className="text-white font-bold text-sm sm:text-base mb-1">
+                                            {stat.label}
+                                        </div>
+                                        <div className="text-gray-500 text-xs font-medium">
+                                            {stat.description}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </FadeIn>
+                    </div>
                 </section>
 
                 {/* Projects Section Grid */}
@@ -544,6 +644,125 @@ export default function Welcome({ auth, projects, skills }: Props) {
                                     </FadeIn>
                                 );
                             })}
+                        </div>
+                    </div>
+                </section>
+
+                {/* About Me Section - NEW */}
+                <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900/40 border-y border-gray-900/60">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                            {/* Left: About Text */}
+                            <FadeIn>
+                                <div className="space-y-6">
+                                    <div>
+                                        <p className="text-yellow-400 text-xs sm:text-sm font-bold uppercase tracking-widest mb-2">
+                                            About Me
+                                        </p>
+                                        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                                            Crafting Visual Stories with{" "}
+                                            <span className="text-yellow-400">
+                                                Precision
+                                            </span>
+                                        </h2>
+                                        <div className="h-1 w-12 bg-yellow-400 rounded-full mt-3" />
+                                    </div>
+
+                                    <div className="space-y-4 text-gray-400 text-sm sm:text-base leading-relaxed font-medium">
+                                        <p>
+                                            I'm a passionate Visual Creator and
+                                            Content Producer with over 6 years
+                                            of experience in transforming ideas
+                                            into compelling visual narratives.
+                                            My expertise spans across
+                                            videography, video editing, and
+                                            graphic design.
+                                        </p>
+                                        <p>
+                                            I specialize in creating premium
+                                            content that captures attention and
+                                            delivers messages effectively. From
+                                            brand identity productions to
+                                            cinematic storytelling, I bring
+                                            technical precision and creative
+                                            vision to every project.
+                                        </p>
+                                        <p>
+                                            Currently pursuing Informatics
+                                            Engineering at UIN Maulana Malik
+                                            Ibrahim Malang, I continuously
+                                            expand my skill set to stay at the
+                                            forefront of digital media
+                                            innovation.
+                                        </p>
+                                    </div>
+
+                                    <div className="flex flex-wrap gap-3 pt-2">
+                                        <span className="px-4 py-2 bg-yellow-400/10 text-yellow-400 rounded-lg text-xs font-bold border border-yellow-400/20">
+                                            🎬 Videography
+                                        </span>
+                                        <span className="px-4 py-2 bg-yellow-400/10 text-yellow-400 rounded-lg text-xs font-bold border border-yellow-400/20">
+                                            ✂️ Video Editing
+                                        </span>
+                                        <span className="px-4 py-2 bg-yellow-400/10 text-yellow-400 rounded-lg text-xs font-bold border border-yellow-400/20">
+                                            🎨 Graphic Design
+                                        </span>
+                                        <span className="px-4 py-2 bg-yellow-400/10 text-yellow-400 rounded-lg text-xs font-bold border border-yellow-400/20">
+                                            📸 Photography
+                                        </span>
+                                    </div>
+                                </div>
+                            </FadeIn>
+
+                            {/* Right: Skills Progress Bars */}
+                            <FadeIn delay="delay-[200ms]">
+                                <div className="bg-gray-900/60 rounded-2xl border border-gray-855 p-6 sm:p-8 shadow-xl">
+                                    <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+                                        <span className="text-yellow-400 mr-2">
+                                            ⚡
+                                        </span>
+                                        Core Proficiency
+                                    </h3>
+                                    <div className="space-y-5">
+                                        {topSkills.map((skill, index) => (
+                                            <div key={skill.name}>
+                                                <div className="flex justify-between items-center mb-2">
+                                                    <span className="text-gray-200 font-bold text-sm">
+                                                        {skill.name}
+                                                    </span>
+                                                    <span className="text-yellow-400 font-black text-sm">
+                                                        {skill.level}%
+                                                    </span>
+                                                </div>
+                                                <AnimatedSkillBar
+                                                    level={skill.level}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-6 pt-6 border-t border-gray-800">
+                                        <Link
+                                            href={route("public.skills.index")}
+                                            className="inline-flex items-center text-yellow-400 hover:text-yellow-300 font-bold text-sm transition-all group"
+                                        >
+                                            View All Skills & Achievements
+                                            <svg
+                                                className="w-4 h-4 ml-1.5 transform group-hover:translate-x-1 transition-transform"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2.5}
+                                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                                />
+                                            </svg>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </FadeIn>
                         </div>
                     </div>
                 </section>
